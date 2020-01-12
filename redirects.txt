@@ -1,0 +1,21 @@
+https://blog.matt-swain.com/post/104338864527/chemical-structure-handling-in-mongodb
+=> https://matt.swain.com/blog/2014-12-04-chemical-structure-handling-in-mongoDB/
+
+https://blog.matt-swain.com/post/90063968007/mychembl-on-mac-os-x
+=> https://matt.swain.com/blog/2014-06-27-mychembl-on-mac-os-x/
+
+https://blog.matt-swain.com/post/87093745652/chemical-similarity-search-in-mongodb
+=> https://matt.swain.com/blog/2014-06-03-chemical-similarity-search-in-mongodb/
+
+https://blog.matt-swain.com/post/58327973320/homebrew-cheminformatics
+=> https://matt.swain.com/blog/2013-08-15-homebrew-cheminformatics/
+
+https://blog.matt-swain.com/post/54106213809/custom-writer-class-for-jsoncpp
+=> https://matt.swain.com/blog/2013-06-28-custom-writer-class-for-jsoncpp/
+
+https://blog.matt-swain.com/post/36316268866/simple-versioned-backups-for-mongodb
+=> https://matt.swain.com/blog/2012-11-22-simple-versioned-backups-for-mongodb/
+
+https://blog.matt-swain.com/post/25650072381/a-lightweight-xmp-parser-for-extracting-pdf
+=> https://matt.swain.com/blog/2012-06-22-python-xmp-parser-for-pdf-metadata/
+

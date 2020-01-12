@@ -1,0 +1,27 @@
+---
+title: Homebrew Cheminformatics
+date: "2013-08-15"
+description: Cheminformatics formulae for the Homebrew package manager.
+---
+
+Cheminformatics formulae for the Homebrew package manager.
+
+Some cheminformatics toolkits are notoriously hard to build from scratch, so I put together these Homebrew formulae to make things easier.
+
+If you don't already have [homebrew](http://brew.sh), installation is simple:
+
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+Then you can install anything you want using `brew install`.
+
+To get the cheminformatics formulae, you first need to "tap" the repository:
+
+    brew tap mcs07/cheminformatics
+
+Then simply use `brew install`:
+
+    brew install inchi
+    brew install opsin
+    brew install indigo
+    brew install rdkit
+    brew install osra

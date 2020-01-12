@@ -1,0 +1,238 @@
+---
+title: A Custom Writer Class for JsonCpp
+date: "2013-06-28"
+description: Custom output formatting for the C++ JSON library.
+---
+
+[JsonCpp](http://jsoncpp.sourceforge.net) provides a simple API for reading and writing [JSON](http://www.json.org) in C++. It has two classes for serialising JSON output: `FastWriter` produces minified output on a single line with no whitespace, and `StyledWriter` produces output padded with plenty of extra whitespace and a maximum line length.
+
+I wanted more fine-grained control over the output, so I put together this simple `CustomWriter` class that allows a custom indent, custom maximum line length, and custom whitespace around brackets, colons and commas.
+
+### customwriter.h
+
+```cpp
+// Copyright (c) 2013 Matt Swain. Released under the MIT license.
+#include <string>
+
+namespace Json {
+
+   /** \brief Writes a Value in JSON format with custom formatting.
+    *
+    * The JSON document is written according to the rules specified 
+    * in the constructor. Objects and arrays are printed on a single 
+    * line if they are below a certain length, otherwise they are 
+    * indented. It is possible to output invalid json if the 
+    * customizable parameters are specified incorrectly. Set maxWidth
+    * to 0 to print output on a single line. 
+    *
+    * \sa Reader, Value
+    */
+   class JSON_API CustomWriter : public Writer
+   {
+   public:
+      CustomWriter( std::string opencurly = "{",
+                    std::string closecurly = "}",
+                    std::string opensquare = "[",
+                    std::string closesquare = "]",
+                    std::string colon = ":",
+                    std::string comma = ",",
+                    std::string indent = "  ",
+                    int maxWidth = 74);
+      virtual ~CustomWriter(){}
+
+   public: // overridden from Writer
+      virtual std::string write( const Value &root );
+
+   private:
+      void writeValue( const Value &value, std::string &doc, bool forceSingleLine );
+      bool isMultiline( const Value &value );
+      void indent();
+      void unindent();
+
+      std::string document_;
+      std::string indentString_;
+      std::string opencurly_;
+      std::string closecurly_;
+      std::string opensquare_;
+      std::string closesquare_;
+      std::string colon_;
+      std::string comma_;
+      std::string indent_;
+      int maxWidth_;
+   };
+   
+}
+```
+
+### customwriter.cpp
+
+```cpp
+// Copyright (c) 2013 Matt Swain. Released under the MIT license.
+#include <json/json.h>
+#include <json/customwriter.h>
+
+namespace Json {
+
+CustomWriter::CustomWriter( std::string opencurly,
+                            std::string closecurly,
+                            std::string opensquare,
+                            std::string closesquare,
+                            std::string colon,
+                            std::string comma,
+                            std::string indent,
+                            int maxWidth)
+   : opencurly_( opencurly )
+   , closecurly_( closecurly )
+   , opensquare_( opensquare )
+   , closesquare_( closesquare )
+   , colon_( colon )
+   , comma_( comma )
+   , indent_( indent )
+   , maxWidth_( maxWidth )
+{
+}
+
+
+std::string 
+CustomWriter::write( const Value &root )
+{
+   document_ = "";
+   indentString_ = "";
+   writeValue( root, document_, false );
+   document_ += "\n";
+   return document_;
+}
+
+
+void 
+CustomWriter::writeValue( const Value &value, std::string &doc, bool forceSingleLine )
+{
+   switch ( value.type() )
+   {
+   case nullValue:
+      doc += "null";
+      break;
+   case intValue:
+      doc += valueToString( value.asLargestInt() );
+      break;
+   case uintValue:
+      doc += valueToString( value.asLargestUInt() );
+      break;
+   case realValue:
+      doc += valueToString( value.asDouble() );
+      break;
+   case stringValue:
+      doc += valueToQuotedString( value.asCString() );
+      break;
+   case booleanValue:
+      doc += valueToString( value.asBool() );
+      break;
+   case arrayValue:
+      {
+         bool isMulti = false;
+         if (!forceSingleLine)
+         {
+            std::string valLine = "";
+            writeValue( value, valLine, true);
+            if (valLine.length() > maxWidth_)
+            {
+               isMulti = true;
+            }
+            else
+            {
+               doc += valLine;
+               break;
+            }
+         }
+         doc += opensquare_;
+         if (isMulti)
+            indent();
+         for ( int index =0; index < value.size(); ++index )
+         {
+            if (isMulti)
+            {
+               doc += "\n";
+               doc += indentString_;
+            }
+            writeValue( value[index], doc, false );
+            if ( index < value.size()-1 )
+               doc += comma_;
+         }
+         if (isMulti)
+         {
+            unindent();
+            doc += "\n";
+            doc += indentString_;
+         }
+         doc += closesquare_;
+      }
+      break;
+   case objectValue:
+      {
+         bool isMulti = false;
+         if (!forceSingleLine)
+         {
+            std::string valLine = "";
+            writeValue( value, valLine, true);
+            if (valLine.length() > maxWidth_)
+            {
+               isMulti = true;
+            }
+            else
+            {
+               doc += valLine;
+               break;
+            }
+         }
+         Value::Members members( value.getMemberNames() );
+         doc += opencurly_;
+         if (isMulti)
+            indent();
+         for ( Value::Members::iterator it = members.begin(); 
+               it != members.end(); 
+               ++it )
+         {
+            if (isMulti)
+            {
+               doc += "\n";
+               doc += indentString_;
+               
+            }
+            const std::string &name = *it;
+            doc += valueToQuotedString( name.c_str() );
+            doc += colon_;
+            writeValue( value[name], doc, forceSingleLine );
+            if ( !(it + 1 == members.end()) )
+               doc += comma_;
+         }
+         if (isMulti)
+         {
+            unindent();
+            doc += "\n";
+            doc += indentString_;
+         }
+         doc += closecurly_;
+      }
+      break;
+   }
+}
+
+
+void 
+CustomWriter::indent()
+{
+   indentString_ += indent_;
+}
+
+
+void 
+CustomWriter::unindent()
+{
+   int idSize = int(indent_.size());
+   int idsSize = int(indentString_.size());
+   if (idsSize >= idSize)
+      indentString_.resize (idsSize - idSize);
+}
+
+}
+```
