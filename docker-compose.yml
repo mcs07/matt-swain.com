@@ -4,7 +4,7 @@ services:
   
   matt-swain:
     build: .
-    image: ${REGISTRY}/matt-swain:1.0.0
+    image: ${REGISTRY}/matt-swain:1.0.1
     ports:
       - 8000:80
     restart: unless-stopped
