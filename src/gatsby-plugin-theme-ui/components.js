@@ -1,4 +1,4 @@
-import Prism from "@theme-ui/prism"
+import Prism from "../components/prism"
 import SlideDeck from "../components/slide-deck"
 
 const components = {
