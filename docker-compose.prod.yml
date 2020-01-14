@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  
+  matt-swain:
+    image: ${REGISTRY}/matt-swain:1.0.0
+    deploy:
+      labels:
+        - traefik.enable=true
+        - traefik.http.routers.matt-swain.entrypoints=https
+        - traefik.http.routers.matt-swain.rule=Host(`matt-swain.com`)
+        - traefik.http.routers.matt-swain.tls=true
+        - traefik.http.routers.matt-swain.tls.certresolver=le
+        - traefik.http.services.matt-swain.loadbalancer.server.port=80
+    networks:
+      - traefik-public
+
+networks:
+  traefik-public:
+    external: true
