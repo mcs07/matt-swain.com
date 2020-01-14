@@ -1,0 +1,76 @@
+==================================================================
+https://keybase.io/mcs07
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://matt-swain.com
+  * I am mcs07 (https://keybase.io/mcs07) on keybase.
+  * I have a public key with fingerprint 9329 8D08 E4D2 F2B6 85FB  56B0 3872 03B9 4DFC 10FD
+
+To claim this, I am signing this object:
+
+{
+    "body": {
+        "client": {
+            "name": "keybase.io node.js client",
+            "version": "0.7.3"
+        },
+        "key": {
+            "fingerprint": "93298d08e4d2f2b685fb56b0387203b94dfc10fd",
+            "host": "keybase.io",
+            "key_id": "387203B94DFC10FD",
+            "uid": "0f540c3c51ad5a9a38356caeb4bc5900",
+            "username": "mcs07"
+        },
+        "merkle_root": {
+            "ctime": 1421105519,
+            "hash": "12ea47bae3aa4c461b7d364f7375c58ed7b37ebe0944adce2a381c9651e911eeed5d4d1ba1e70fd39c9d640aac98a1aaadc88f5346619ef87db49ba42b7f3be4",
+            "seqno": 129373
+        },
+        "service": {
+            "hostname": "matt-swain.com",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1421105551,
+    "expire_in": 157680000,
+    "prev": "9da795bcbecc1fcce077f2ad3d0a7eb1d6475e7c30bc92f2181dbf8e1468efdd",
+    "seqno": 3,
+    "tag": "signature"
+}
+
+with the aforementioned key, yielding the PGP signature:
+
+-----BEGIN PGP MESSAGE-----
+Comment: GPGTools - https://gpgtools.org
+
+owFdUl1oHUUUvjetqb1NrRqVUivUBV9qvJ3ZmdnZieKDiVWk0ICCxj5c5+dssiZ3
+93Z3mxjDlRYbsARpLIK2WoTSvwfz0CKlovgX0cbbqogmtKa0iFCjoDEQKFbQ2bTF
+n3mamfOd73zfOWds5ZJCqbiv9vQn4V90f7ExqwpPvNO9e9hRsRly2ocd3R9ClOW3
+SFbBaXf6YEjJFMphvC6KDZSfTdddw7Q5A5CkYRxZFCrzMnHqbTk8Tw7CqAeSWhLm
+XI4grvAN8oEaN3CV57NAMU8h4nMXESWoCTRGgbGUvXGa/aeqs8hZCY39vYp/SNDO
+jR0Ybey0sW2LARQwijTRDEvDpJDEJ8zTEhRVmgmEcmAKyTVLVZ0inoutQtLXD5Uk
+jhcd6yzM45i6GCPGsLByZNprM7ALknIlgUhJNfWw4oZ4NOCEM818MFwRDgqQoFQa
+Da5VgLXwGAaBMQAYZqjBSmLg1icRWhiPIim18CWW0ub4fsAI9TwsIPC5UVQoSV3F
+A6KAWv0pbI1iK84VhJN6/k4GQg257rxn163JLLsvHZRhVNZx1abVkjiLddxvY71Z
+VmvPbWdDtRw7CKqSvn2VpqLCyNiZ/Xuo2EL/1xKG2xx4rhYmUAlzBOOej+zJ68BA
+PmkjuWBKK9AaB1oD4jxwpSEGSdsgbF1zBlwTpLSwu4B9bFTgA6aeD4Ex/xglVqfs
+sZRp2BPJbFsCTn1Xce3SQrFUaL6hKd/aQmn5zddXudlf9ueq7w50o5861CPf7lxh
+Pj8zPv3Fu3t3z9y7v2XiSr3ttw++emHDkU2jD7zVAc8s/Qx41yg7sHe09GvT5qeO
+dG/verPf9FV+OHrYXT4/Pwldz99x9tK5ixe27Nrzy8GmhU9FZ7Vx4ysDb1y6c3ht
+4fCaH1cNfnni+NRsS3WGXDk5ceuOqelS6+ghcuz0sQeP910cmR07teW1yfu/Pv/R
+S61zjrPssvzw7pvm6Vw0e+Lng+bcmfKe3tLp1tK+9x9bf08Dprdu//7JU2NLHn75
+rh2NWx7ten1l8+2bVgyenespri6veU9/fHly9fhtM4fOP75w8tWF+tTvdGTzSEP9
+sZNlE9+82II7wg0XxqLx9X8D
+=m0FW
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/mcs07
+
+==================================================================
