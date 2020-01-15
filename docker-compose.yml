@@ -2,9 +2,9 @@ version: '3'
 
 services:
   
-  matt-swain:
+  web:
     build: .
-    image: ${REGISTRY}/matt-swain:1.0.1
+    image: ${REGISTRY}/matt-swain/web:1.0.1
     ports:
       - 8000:80
     restart: unless-stopped

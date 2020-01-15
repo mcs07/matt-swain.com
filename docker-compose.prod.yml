@@ -2,8 +2,8 @@ version: '3'
 
 services:
   
-  matt-swain:
-    image: ${REGISTRY}/matt-swain:1.0.1
+  web:
+    image: ${REGISTRY}/matt-swain/web:1.0.1
     deploy:
       labels:
         - traefik.enable=true
