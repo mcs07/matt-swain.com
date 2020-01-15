@@ -66,6 +66,7 @@ module.exports = {
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sitemap`,
-    `gatsby-plugin-theme-ui`
+    `gatsby-plugin-theme-ui`,
+    `gatsby-plugin-remove-trailing-slashes`
   ],
 }

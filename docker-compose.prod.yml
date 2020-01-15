@@ -8,7 +8,7 @@ services:
       labels:
         - traefik.enable=true
         - traefik.http.routers.matt-swain.entrypoints=https
-        - traefik.http.routers.matt-swain.rule=Host(`matt-swain.com`)
+        - traefik.http.routers.matt-swain.rule=Host(`matt-swain.com`, `www.matt-swain.com`, `blog.matt-swain.com`)
         - traefik.http.routers.matt-swain.tls=true
         - traefik.http.routers.matt-swain.tls.certresolver=le
         - traefik.http.services.matt-swain.loadbalancer.server.port=80

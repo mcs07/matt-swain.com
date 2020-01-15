@@ -12,4 +12,5 @@ RUN gatsby build
 
 FROM nginx:1.17.7
 
+COPY nginx /etc/nginx/conf.d
 COPY --from=build /matt-swain/public /usr/share/nginx/html
