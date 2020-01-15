@@ -4,7 +4,7 @@ services:
   
   web:
     build: .
-    image: ${REGISTRY}/matt-swain/web:1.0.1
+    image: ${REGISTRY}/matt-swain/web:1.0.2
     ports:
       - 8000:80
     restart: unless-stopped
