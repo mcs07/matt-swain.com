@@ -16,12 +16,12 @@ module.exports = {
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
-        defaultLayouts: { 
+        defaultLayouts: {
           posts: `${__dirname}/src/components/post-layout.js`,
-          default: `${__dirname}/src/components/layout.js` 
+          default: `${__dirname}/src/components/layout.js`,
         },
         // See https://github.com/gatsbyjs/gatsby/issues/15486#issuecomment-510153237
-        plugins: [ 
+        plugins: [
           {
             resolve: `gatsby-remark-images`,
             options: {
@@ -29,7 +29,7 @@ module.exports = {
               linkImagesToOriginal: false,
               backgroundColor: `transparent`,
             },
-          }
+          },
         ],
         gatsbyRemarkPlugins: [
           {
@@ -67,6 +67,60 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-theme-ui`,
-    `gatsby-plugin-remove-trailing-slashes`
+    `gatsby-plugin-remove-trailing-slashes`,
+    {
+      resolve: `gatsby-plugin-feed-mdx`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allMdx } }) => {
+              return allMdx.edges.map(edge => {
+                return Object.assign({}, edge.node.frontmatter, {
+                  description: edge.node.frontmatter.description || edge.node.excerpt,
+                  date: edge.node.frontmatter.date,
+                  url: site.siteMetadata.siteUrl + "/blog" + edge.node.fields.slug,
+                  guid: site.siteMetadata.siteUrl + "/blog" + edge.node.fields.slug,
+                  custom_elements: [{ "content:encoded": edge.node.html }]
+                });
+              });
+            },
+            query: `
+              {
+                allMdx(
+                  sort: { order: DESC, fields: [frontmatter___date] },
+                ) {
+                  edges {
+                    node {
+                      excerpt
+                      html
+                      fields { slug }
+                      frontmatter {
+                        title
+                        date
+                        description
+                      }
+                    }
+                  }
+                }
+              }
+            `,
+            output: "/rss.xml",
+            title: "Matt Swain's Blog",
+          }
+        ]
+      }
+    }
   ],
 }
