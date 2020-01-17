@@ -1,0 +1,21 @@
+---
+title: "CIRpy: A Python Interface for the NCI Chemical Identifier Resolver"
+date: "2012-03-20"
+description: Resolve identifiers to various chemical formats in Python.
+---
+
+In the past I have used the ChemSpider API (through [ChemSpiPy](https://github.com/mcs07/ChemSpiPy)) to resolve chemical names to structures. Unfortunately this doesn't work that well for IUPAC names and I found myself wondering whether it was worth setting up a system that would try a number of different resolvers. More specifically, I wanted a system that would first try using [OPSIN](http://opsin.ch.cam.ac.uk/) to match IUPAC names, and if that failed, try a [ChemSpider](http://www.chemspider.com/) lookup. Just as I was about to start doing this myself, I came across the [Chemical Identifier Resolver (CIR)](http://cactus.nci.nih.gov/chemical/structure) that does exactly that (and much more).
+
+[CIR](http://cactus.nci.nih.gov/chemical/structure) is a web service created by by the CADD Group at the NCI that performs various chemical name to structure conversions. In short, it will (attempt to) resolve the structure of any chemical identifier that you throw at it. Under the hood it uses a combination of [OPSIN](http://opsin.ch.cam.ac.uk/), [ChemSpider](http://www.chemspider.com/) and CIR's own database.
+
+To simplify interacting with CIR through Python, I wrote a simple wrapper called [CIRpy](https://github.com/mcs07/CIRpy) that handles constructing url requests and parsing XML responses. It's [available on github here](https://github.com/mcs07/CIRpy).
+
+Installing it is a simple case of running `pip install cirpy`. Here's an example using the resolve function:
+
+```python
+import cirpy
+
+smiles_string = cirpy.resolve('Aspirin','smiles')
+```
+
+There are full details of all available options in the [CIRpy documentation](https://cirpy.readthedocs.io).

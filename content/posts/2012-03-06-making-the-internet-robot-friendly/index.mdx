@@ -1,0 +1,29 @@
+---
+title: Making the Internet Robot-friendly
+date: "2012-03-06"
+description: Microdata!
+---
+
+Microdata, part of the HTML5 specification, is a way of semantically marking up web content so it is more easily understood by machines. It's still a fairly new standard so it isn't that widely adopted, but it has been [adopted by google](http://support.google.com/webmasters/bin/answer.py?hl=en&answer=99170) as a way to add extra information to search result listings, which is bound to give it a bit of a boost.
+
+The philosophy behind microdata is to add extra markup to human-readable content to give it meaning to machines. At the moment these 'machines' are mostly crawlers used by search engines to index the web, but in theory this could be hugely useful for all sorts of different purposes. These range from scientists using it for sharing and data-mining of scientific results, to apps using it to provide product price comparisons and ratings or information about events and locations.
+
+As a way of testing out microdata, I had a go at using it to mark up my [About Page](https://matt-swain.com/about):
+
+```html
+<div itemscope itemtype="http://data-vocabulary.org/Person">
+    Hi, I'm <span itemprop="name">Matt Swain</span>.
+    I'm a <span itemprop="title">PhD student</span> at the
+    <span itemprop="affiliation">University of Cambridge</span>.
+</div>
+```
+
+The additional `itemtype` and `itemprop` attributes leave the content completely unchanged for a human reader, but add a wealth of useful information for machines. To check that it works, [Google offers a tool](http://www.google.com/webmasters/tools/richsnippets?url=http%3A%2F%2Fmatt-swain.com%2Fabout&view=) that displays all the structured data its web crawlers managed to extract from a page.
+
+As this tool shows, the main benefit of doing this at the moment is to get author information such as a photo next to pages you have created in Google search results.
+
+Further reading:
+
+- [Google page on using microdata for search results](http://support.google.com/webmasters/bin/answer.py?hl=en&answer=99170)
+- [Microdata tutorial on NetTuts+](http://net.tutsplus.com/tutorials/html-css-techniques/html5-microdata-welcome-to-the-machine/)
+- [schema.org](http://www.schema.org/docs/gs.html)

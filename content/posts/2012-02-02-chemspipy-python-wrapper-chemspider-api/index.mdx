@@ -1,0 +1,70 @@
+---
+title: "ChemSpiPy: A Python Wrapper for the ChemSpider API"
+date: "2012-02-02"
+description: Search ChemSpider with Python.
+---
+
+I recently had the task of matching up a large amount of poorly organised molecular properties data with the corresponding structures, where the data was only identified by name. To make matters worse, the names were mostly an inconsistent mix of common names and trade names.
+
+A good solution to this problem is to use the data available in a chemical database like [ChemSpider](http://www.chemspider.com) - you can enter any type of chemical identifier into the simple search and it will attempt to resolve a structure for you. It also has a [web API](http://www.chemspider.com/AboutServices.aspx), so the whole process can be automated and performed for thousands of structures at a time.
+
+I was just about to write a Python interface to the API from scratch, when I came across ChemSpiPy by [Cameron Neylon](http://github.com/cameronneylon), a bare bones Python wrapper for the API. I made a few bug fixes and extended the functionality, so now you can easily search ChemSpider and retrieve properties and identifiers for chemical structures from your Python scripts.
+
+You can [download it from GitHub here](https://github.com/mcs07/ChemSpiPy). Cameron Neylon's original version is [also available](https://github.com/cameronneylon/ChemSpiPy).
+
+Usage is pretty straightforward - install using `pip`:
+
+```bash
+pip install chemspipy
+```
+
+Then simply import it at the top of your Python script, and connect to ChemSpider by creating a ChemSpider instance using your security token:
+
+```python
+from chemspipy import ChemSpider
+cs = ChemSpider('<your-security-token>')
+```
+
+All your interaction with the ChemSpider database should now happen through this ChemSpider object, `cs`.
+
+If you already know the ChemSpiderID of a compound, you can use that to retrieve the full compound record:
+
+```python
+c = cs.get_compound(2157)
+```
+
+Compound objects have the following properties:
+
+- `csid`: ChemSpider ID.
+- `image_url`: URL of a PNG image of the 2D chemical structure.
+- `molecular_formula`: Molecular formula.
+- `smiles`: SMILES string.
+- `stdinchi`: Standard InChI string.
+- `stdinchikey`: Standard InChIKey.
+- `inchi`: InChI string.
+- `inchikey`: InChIKey.
+- `average_mass`: Average mass.
+- `molecular_weight`: Molecular weight.
+- `monoisotopic_mass`: Monoisotopic mass.
+- `nominal_mass`: Nominal mass.
+- `alogp`: AlogP.
+- `xlogp`: XlogP.
+- `common_name`: Common Name.
+- `mol_2d`: MOL file containing 2D coordinates.
+- `mol_3d`: MOL file containing 3D coordinates.
+- `mol_raw`: Unprocessed MOL file.
+- `image`: 2D depiction as binary data in PNG format.
+- `spectra`: List of spectra.
+
+These are all retrieved lazily from ChemSpider only when requested to avoid unnecessary calls to the API. More details about what the API returns are available in the [ChemSpider API Documentation](https://developer.rsc.org). 
+
+It is also possible to search using any kind of chemical identifier:
+
+```python
+for result in cs.search('Glucose'):
+    print(result)
+```
+
+Read the [full documentation](https://chemspipy.readthedocs.io) for more details of what is possible.
+
+Note: Most operations require a security token that is issued to you automatically when you register for a RSC ID and then sign in to ChemSpider. Once you have done this, you can find your security token on your ChemSpider User Profile.
