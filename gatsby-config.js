@@ -88,13 +88,14 @@ module.exports = {
             serialize: ({ query: { site, allMdx } }) => {
               return allMdx.edges.map(edge => {
                 return Object.assign({}, edge.node.frontmatter, {
-                  description: edge.node.frontmatter.description || edge.node.excerpt,
+                  description:
+                    edge.node.frontmatter.description || edge.node.excerpt,
                   date: edge.node.frontmatter.date,
                   url: site.siteMetadata.siteUrl + edge.node.fields.slug,
                   guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
-                  custom_elements: [{ "content:encoded": edge.node.html }]
-                });
-              });
+                  custom_elements: [{ "content:encoded": edge.node.html }],
+                })
+              })
             },
             query: `
               {
@@ -116,11 +117,20 @@ module.exports = {
                 }
               }
             `,
-            output: "/rss.xml",
-            title: "Matt Swain's Blog",
-          }
-        ]
-      }
-    }
+            output: `/rss.xml`,
+            title: `Matt Swain's Blog`,
+          },
+        ],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-ackee-tracker`,
+      options: {
+        domainId: `9b395ebf-19c8-4a28-9e80-5965fee8625a`,
+        server: `https://oxo.mosxt.com`,
+        ignoreLocalhost: true,
+        detailed: true,
+      },
+    },
   ],
 }
