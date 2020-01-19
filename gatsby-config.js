@@ -25,18 +25,24 @@ module.exports = {
           {
             resolve: `gatsby-remark-images`,
             options: {
-              maxWidth: 720,
+              maxWidth: 1008,
               linkImagesToOriginal: false,
+              sizeByPixelDensity: true,
+              disableBgImageOnAlpha: true,
               backgroundColor: `transparent`,
             },
           },
         ],
         gatsbyRemarkPlugins: [
+          `gatsby-remark-attr`,
+          require.resolve(`./gatsby-remark-fig`),
           {
             resolve: `gatsby-remark-images`,
             options: {
-              maxWidth: 720,
-              linkImagesToOriginal: false,
+              maxWidth: 1008,
+              linkImagesToOriginal: true,
+              sizeByPixelDensity: true,
+              disableBgImageOnAlpha: true,
               backgroundColor: `transparent`,
             },
           },
@@ -44,8 +50,6 @@ module.exports = {
           `gatsby-remark-smartypants`,
           `gatsby-remark-widows`,
           `gatsby-remark-katex`,
-          `gatsby-remark-attr`,
-          require.resolve(`./gatsby-remark-fig`),
         ],
       },
     },
