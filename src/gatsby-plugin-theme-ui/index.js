@@ -115,6 +115,7 @@ export default {
       figure: {
         mx: [-3, 0],
         my: 4,
+        textAlign: "center",
         figcaption: {
           color: "muted",
           fontSize: 2,
@@ -212,7 +213,7 @@ export default {
       borderBottomStyle: "solid",
     },
     img: {
-      width: "100%",
+      maxWidth: "100%",
     },
     hr: {
       borderWidth: "1px",
