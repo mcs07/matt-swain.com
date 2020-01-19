@@ -2,6 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `Matt Swain`,
     author: `Matt Swain`,
+    twitter: `@mattswain123`,
     description: `Matt Swain's personal web site`,
     siteUrl: `https://matt-swain.com`,
   },

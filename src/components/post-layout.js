@@ -12,7 +12,14 @@ export default function PageTemplate({ data: { mdx } }) {
   const image = mdx.frontmatter.image ? mdx.frontmatter.image.publicURL : null
   return (
     <Layout>
-      <SEO title={title} description={description} type="article" image={image} />
+      <SEO
+        title={title}
+        description={description}
+        type="article"
+        url={mdx.fields.slug}
+        image={image}
+        date={mdx.frontmatter.date}
+      />
       <Heading as="h1" variant="styles.h1">
         {title}
       </Heading>
