@@ -9,9 +9,10 @@ import SEO from "./seo"
 export default function PageTemplate({ data: { mdx } }) {
   const title = mdx.frontmatter.title || mdx.fields.slug
   const description = mdx.frontmatter.description || mdx.excerpt
+  const image = mdx.frontmatter.image ? mdx.frontmatter.image.publicURL : null
   return (
     <Layout>
-      <SEO title={title} description={description} />
+      <SEO title={title} description={description} type="article" image={image} />
       <Heading as="h1" variant="styles.h1">
         {title}
       </Heading>
@@ -33,6 +34,9 @@ export const pageQuery = graphql`
         dateText: date(formatString: "D MMMM YYYY")
         title
         description
+        image {
+          publicURL
+        }
       }
       fields {
         slug
