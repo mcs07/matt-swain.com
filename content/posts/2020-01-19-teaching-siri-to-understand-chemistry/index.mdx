@@ -40,7 +40,7 @@ Each of these tasks can be performed with a built-in action that you can find in
 
 The CDK (Chemistry Development Kit) has some of the best 2D depictions for molecules (and reactions) of any cheminformatics toolkit, and John Mayfield runs a public [CDK Depict web service](https://www.simolecule.com/cdkdepict/depict.html).
 
-We can make use of it in much the same way as the identifier resolve. We URL-encode the SMILES, substitute it into the URL below, then make a HTTP GET request to the URL. Only this time, we get the image content from the response.
+We can make use of it in much the same way as the identifier resolver. We URL-encode the SMILES, substitute it into the URL below, then make a HTTP GET request to the URL. Only this time, we get the image content from the response instead of text.
 
 ```
 https://www.simolecule.com/cdkdepict/depict/cow/svg?smi={smiles}&zoom=1.6
@@ -56,8 +56,8 @@ For someone who is used to writing lines of code, it can sometimes feel a bit cl
 
 You can [download my example shortcut here](https://www.icloud.com/shortcuts/7f50565e12f0426aa4200b069b231d88), and use it as a starting point for building other shortcuts that enable Siri to perform cheminformatics tasks. Let me know via [Twitter](https://twitter.com/mattswain123) if you come up with anything you'd like to share.
 
-For an additional example, check out this blog post Craig Callum, which shows how to [trigger KNIME workflows with Siri](https://medium.com/@craigcullum/hey-siri-run-my-knime-workflow-b7da176ee243). It includes more details about how to parse a JSON response from a web service, a common task that wasn't needed for my simple example.
+For an additional example, check out this blog post by Craig Callum, which shows how to [trigger KNIME workflows with Siri](https://medium.com/@craigcullum/hey-siri-run-my-knime-workflow-b7da176ee243). It includes more details about how to parse a JSON response from a web service, a common task that wasn't needed for my simple example.
 
-Finally, it is worth noting that third-party apps on the App Store can provide custom actions for shortcuts that can run code natively on the device, potentially removing the need to call out to public web services for these sorts of tasks. If any iOS developers already have apps that include a cheminformatics toolkit, it would be great to see that functionality made available in shortcuts.
+Finally, it is worth noting that third-party apps on the App Store can provide custom actions for shortcuts that can run code natively on the device, potentially removing the need to call out to public web services for these sorts of tasks. If any iOS developers already have apps that include a cheminformatics toolkit, it would be great to see that functionality made available in Shortcuts.
 
 
