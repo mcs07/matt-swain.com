@@ -27,7 +27,6 @@ module.exports = {
             options: {
               maxWidth: 1008,
               linkImagesToOriginal: false,
-              sizeByPixelDensity: true,
               disableBgImageOnAlpha: true,
               backgroundColor: `transparent`,
             },
@@ -41,7 +40,6 @@ module.exports = {
             options: {
               maxWidth: 1008,
               linkImagesToOriginal: true,
-              sizeByPixelDensity: true,
               disableBgImageOnAlpha: true,
               backgroundColor: `transparent`,
             },
