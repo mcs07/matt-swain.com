@@ -9,7 +9,7 @@ const SEO = ({ title, description, type, url, image, date }) => {
     <Helmet>
       {title && (
         <title>
-          {title} | ${siteMetadata.title}
+          {title} | {siteMetadata.title}
         </title>
       )}
       {description && <meta name="description" content={description} />}
