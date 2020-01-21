@@ -4,7 +4,7 @@ import { useThemeUI } from "theme-ui"
 import { useSiteMetadata } from "../utils/hooks"
 
 export const Head = props => {
-  const { title, author, twitter, description } = useSiteMetadata()
+  const { title, twitter, description } = useSiteMetadata()
   const { theme } = useThemeUI()
   return (
     <Helmet htmlAttributes={{ lang: "en" }} {...props}>
